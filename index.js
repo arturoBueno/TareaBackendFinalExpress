@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser());
 
 app.get('/', (req, res) => {
-    res.send('¡Bienvenido a la API!');
+    res.send('¡Bienvenido a la api!');
 });
 
 // app.use("/users", usersRouter);
