@@ -1,6 +1,5 @@
 import Producto from "../models/products.js";
 import jwt from 'jsonwebtoken';
-//import redis from "../config/redis.js";
 
 
 export const GetAllProducts = async (req, res) => {

@@ -1,20 +1,20 @@
 import jwt from "jsonwebtoken";
-import Producto from "../models/products.js";
+import Manager from "../../models/managers.js";
 
-const authorizateProduct = async (req, res, next) => {
+const authorizateManager = async (req, res, next) => {
     const token = req.headers.authorization.split("Bearer ")[1];
     console.log(token)
 
     try {
-        const { productId } = jwt.verify(token, "backend");
-        console.log(productId)
-        const productExists = await Producto.findOne({
+        const { productId: ManagerId } = jwt.verify(token, "backend");
+        console.log(ManagerId)
+        const managerExists = await Manager.findOne({
             where: {
-                id: +productId,
+                id: +ManagerId,
             },
         });
 
-        if (!productExists) {
+        if (!managerExists) {
             return res.status(403).json({ message: "Forbidden" });
         }
 
@@ -24,4 +24,4 @@ const authorizateProduct = async (req, res, next) => {
     }
 };
 
-export default authorizateProduct;
+export default authorizateManager;

@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { CreateProduct, DeleteProductById, GetAllProducts, GetOneProductById, Login, UpdateProductById } from "../controllers/products.controllers.js";
-import checkIdNumber from "../middlewares/checkCodigoNumber.js";
-import productExists from "../middlewares/productExists.js";
+import checkIdNumber from "../middlewares/products/checkCodigoNumber.js";
+import productExists from "../middlewares/products/productExists.js";
 import { body, param } from "express-validator";
 import validateDataMiddleware from "../middlewares/validation/validateData.middleware.js";
-import authorizateProduct from "../middlewares/authorizateProduct.middleware.js";
+import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
 
 
 const productsRouter = Router();
