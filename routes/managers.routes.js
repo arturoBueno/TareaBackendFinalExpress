@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { CreateProduct, DeleteProductById, GetAllProducts, GetOneProductById, Login, UpdateProductById } from "../controllers/products.controllers.js";
+// import { CreateProduct, DeleteProductById, GetAllProducts, GetOneProductById, Login, UpdateProductById } from "../controllers/products.controllers.js";
 import checkIdNumber from "../middlewares/managerss/checkCodigoNumber.js";
 import { body, param } from "express-validator";
 import validateDataMiddleware from "../middlewares/validation/validateData.middleware.js";
-import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
+// import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
 import { CreateManager, DeleteManagerById, GetAllManagers, GetOneManagerById, mLogin, UpdatemanagerById } from "../controllers/managers.controllers.js";
 import managerExists from "../middlewares/managerss/ManagerExists.js";
 import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
+import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
 
 
 const managersRouter = Router();
@@ -27,7 +28,7 @@ managersRouter.post("/",     [
 ],
 CreateManager);
 
-managersRouter.patch("/:id",[checkIdNumber,managerExists],UpdatemanagerById );
+managersRouter.patch("/:id",[checkIdNumber,managerExists,authorizateManager],UpdatemanagerById );
 
 managersRouter.delete("/:id",[checkIdNumber,managerExists,authorizateManager], DeleteManagerById);
 

@@ -57,7 +57,7 @@ export const UpdatemanagerById = async (req, res) => {
   
     res.json(ManagerToDelete);
   };
-//Autorizacion
+//Autorizacion Manager
 
   export const  mLogin = async (req, res) => {
     const { managername, codigo } = req.body;

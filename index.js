@@ -2,7 +2,6 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-// import usersRouter from "./routes/users.routes";
 import { dbConnection } from "./config/db.js";
 import productsRouter from "./routes/products.routes.js";
 //import Producto from "./models/products.js";

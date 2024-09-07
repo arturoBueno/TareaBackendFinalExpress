@@ -6,11 +6,11 @@ const authorizateManager = async (req, res, next) => {
     console.log(token)
 
     try {
-        const { productId: ManagerId } = jwt.verify(token, "backend");
-        console.log(ManagerId)
+        const { managerId } = jwt.verify(token, "backend");
+        console.log(managerId)
         const managerExists = await Manager.findOne({
             where: {
-                id: +ManagerId,
+                id: +managerId,
             },
         });
 

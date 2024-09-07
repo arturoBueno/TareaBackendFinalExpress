@@ -4,7 +4,10 @@ import checkIdNumber from "../middlewares/products/checkCodigoNumber.js";
 import productExists from "../middlewares/products/productExists.js";
 import { body, param } from "express-validator";
 import validateDataMiddleware from "../middlewares/validation/validateData.middleware.js";
+// import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
+// import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
 import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
+import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
 
 
 const productsRouter = Router();
@@ -25,8 +28,8 @@ productsRouter.post("/",     [
 ],
 CreateProduct);
 
-productsRouter.patch("/:id",[checkIdNumber,productExists],UpdateProductById );
+productsRouter.patch("/:id",[checkIdNumber,productExists,authorizateManager],UpdateProductById );
 
-productsRouter.delete("/:id",[checkIdNumber,productExists,authorizateProduct], DeleteProductById);
+productsRouter.delete("/:id",[checkIdNumber,productExists,authorizateManager], DeleteProductById);
 
 export default productsRouter;
