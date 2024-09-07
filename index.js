@@ -1,18 +1,20 @@
-// import "dotenv/config";
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 // import usersRouter from "./routes/users.routes";
-// import { dbConnection } from "./config/db";
-
+import { dbConnection } from "./config/db.js";
+import productsRouter from "./routes/products.routes.js";
+//import Producto from "./models/products.js";
 const app = express();
 
 app.use(cors());
 app.use(bodyParser());
 
-app.get('/', (req, res) => {
-    res.send('¡Bienvenido a la api!');
-});
+app.use("/products", productsRouter);
+// app.get('/', (req, res) => {
+//     res.send('¡Bienvenido a la api!');
+// });
 
 // app.use("/users", usersRouter);
 
