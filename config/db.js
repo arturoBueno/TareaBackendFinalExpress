@@ -8,5 +8,11 @@ export const dbConnection = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: "mariadb",
+        pool: {
+            max: 10,        // Número máximo de conexiones
+            min: 0,         // Número mínimo de conexiones
+            acquire: 30000, // Tiempo máximo de espera antes de lanzar un error (en milisegundos)
+            idle: 10000     // Tiempo que puede estar una conexión inactiva antes de ser liberada (en milisegundos)
+        }
     }
 );

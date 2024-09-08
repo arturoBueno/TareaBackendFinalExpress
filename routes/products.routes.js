@@ -4,9 +4,6 @@ import checkIdNumber from "../middlewares/products/checkCodigoNumber.js";
 import productExists from "../middlewares/products/productExists.js";
 import { body, param } from "express-validator";
 import validateDataMiddleware from "../middlewares/validation/validateData.middleware.js";
-// import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
-// import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
-import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
 import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
 
 
