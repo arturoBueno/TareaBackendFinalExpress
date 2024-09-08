@@ -1,6 +1,6 @@
 import Manager from "../models/managers.js";
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 export const GetAllManagers = async (req, res) => {
     const managers = await Manager.findAll();
@@ -33,7 +33,7 @@ export const CreateManager = async (req, res) => {
     const { managername, codigo, } = req.body;
 
     // Encriptar la contraseña antes de guardar
-    const hashedCodigo = await bcrypt.hash(codigo, 10);
+    const hashedCodigo = await bcryptjs.hash(codigo, 10);
 
     const managerToCreate = {
         managername,
@@ -120,7 +120,7 @@ export const mLogin = async (req, res) => {
     }
 
     // Verificar si la contraseña proporcionada coincide con la encriptada
-    const iscodigoValid = await bcrypt.compare(codigo, manager.codigo);
+    const iscodigoValid = await bcryptjs.compare(codigo, manager.codigo);
 
     if (!iscodigoValid) {
         return res.status(401).json({ message: "Invalid credentials" });

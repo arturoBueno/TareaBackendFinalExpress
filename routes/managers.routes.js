@@ -5,8 +5,9 @@ import { body, param } from "express-validator";
 import validateDataMiddleware from "../middlewares/validation/validateData.middleware.js";
 // import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
 import { CreateManager, DeleteManagerById, GetAllManagers, GetOneManagerById, mLogin, UpdatemanagerById } from "../controllers/managers.controllers.js";
-import managerExists from "../middlewares/managerss/ManagerExists.js";
+// import managerExists from "../middlewares/managerss/ManagerExists.js";
 import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
+import managerExists from "../middlewares/managerss/managerExists.js";
 
 const managersRouter = Router();
 
