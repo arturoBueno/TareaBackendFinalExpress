@@ -7,8 +7,6 @@ import validateDataMiddleware from "../middlewares/validation/validateData.middl
 import { CreateManager, DeleteManagerById, GetAllManagers, GetOneManagerById, mLogin, UpdatemanagerById } from "../controllers/managers.controllers.js";
 import managerExists from "../middlewares/managerss/ManagerExists.js";
 import authorizateManager from "../middlewares/managerss/authorizateManager.middleware.js";
-import authorizateProduct from "../middlewares/products/authorizateProduct.middleware.js";
-
 
 const managersRouter = Router();
 
@@ -28,7 +26,15 @@ managersRouter.post("/",     [
 ],
 CreateManager);
 
-managersRouter.patch("/:id",[checkIdNumber,managerExists,authorizateManager],UpdatemanagerById );
+managersRouter.patch("/:id",[checkIdNumber,managerExists,authorizateManager,
+    param("id", "id not valid").exists().isString(),
+    body("managername", "managername not valid").exists().isString(),
+    body("codigo", "codigo invalid").exists().isString().isLength({
+        min: 1,
+        max: 8,
+    }),
+    validateDataMiddleware,
+],UpdatemanagerById );
 
 managersRouter.delete("/:id",[checkIdNumber,managerExists,authorizateManager], DeleteManagerById);
 

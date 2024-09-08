@@ -57,25 +57,3 @@ export const UpdateProductById = async (req, res) => {
   
     res.json(ProductToDelete);
   };
-//Autorizacion
-
-  export const  Login = async (req, res) => {
-    const { productname, codigo } = req.body;
-
-    const producto = await Producto.findOne({
-        where: {
-            productname: productname,
-            codigo: codigo,
-        },
-    });
-
-    if (!producto) {
-        return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    const token = jwt.sign({ productId: producto.id }, "backend", {
-        expiresIn: 60 * 60,
-    });
-
-    res.json({ token: token });
-};

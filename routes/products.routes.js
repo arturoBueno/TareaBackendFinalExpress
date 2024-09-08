@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateProduct, DeleteProductById, GetAllProducts, GetOneProductById, Login, UpdateProductById } from "../controllers/products.controllers.js";
+import { CreateProduct, DeleteProductById, GetAllProducts, GetOneProductById, UpdateProductById } from "../controllers/products.controllers.js";
 import checkIdNumber from "../middlewares/products/checkCodigoNumber.js";
 import productExists from "../middlewares/products/productExists.js";
 import { body, param } from "express-validator";
@@ -13,7 +13,6 @@ productsRouter.get("/", GetAllProducts);
 
 productsRouter.get("/:id",[checkIdNumber,productExists], GetOneProductById);
 
-productsRouter.post("/login", Login);
 
 productsRouter.post("/",     [
     body("productname", "productname not valid").exists().isString(),
@@ -25,7 +24,15 @@ productsRouter.post("/",     [
 ],
 CreateProduct);
 
-productsRouter.patch("/:id",[checkIdNumber,productExists,authorizateManager],UpdateProductById );
+productsRouter.patch("/:id",[checkIdNumber,productExists,authorizateManager,
+    param("id", "id not valid").exists().isString(),
+    body("productname", "productname not valid").exists().isString(),
+    body("codigo", "codigo invalid").exists().isString().isLength({
+        min: 1,
+        max: 8,
+    }),
+    validateDataMiddleware,
+],UpdateProductById );
 
 productsRouter.delete("/:id",[checkIdNumber,productExists,authorizateManager], DeleteProductById);
 

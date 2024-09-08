@@ -10,7 +10,7 @@ const Manager = dbConnection.define("Managers", {
     codigo: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique:true,
+        unique:false,
     },
 
 });

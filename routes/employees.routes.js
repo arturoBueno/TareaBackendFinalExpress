@@ -28,7 +28,15 @@ employeesRouter.post("/",     [
 ],
 CreateEmployee);
 
-employeesRouter.patch("/:id",[checkIdNumber,employeeExists,authorizateManager],UpdateEmployeeById );
+employeesRouter.patch("/:id",[checkIdNumber,employeeExists,authorizateManager,
+    param("id", "id not valid").exists().isString(),
+    body("employeename", "employeename not valid").exists().isString(),
+    body("codigo", "codigo invalid").exists().isString().isLength({
+        min: 1,
+        max: 8,
+    }),
+    validateDataMiddleware,
+],UpdateEmployeeById );
 
 employeesRouter.delete("/:id",[checkIdNumber,employeeExists,authorizateManager], DeleteEmployeeById);
 
